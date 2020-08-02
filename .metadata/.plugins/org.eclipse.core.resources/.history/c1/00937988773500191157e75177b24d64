@@ -1,0 +1,58 @@
+<%-- Автор: Марчук Л.Б., Дата 19.02.2019,
+Стартовая страница: Вывод заголовка таблицы --%>
+
+<%@page import="java.net.URLDecoder"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" errorPage="/ErrorManager.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Магазин</title>
+</head>
+<body>
+Введите ФИО покупателя: <br>
+<form METHOD=GET action="PriceProcessor">
+<INPUT TYPE=TEXT NAME="client"
+<%
+	//Сохранение покупателя в Cookie
+	new Cookie("client", URLEncoder.encode(request.getParameter("client"), "UTF-8");
+	// Выбор всех Cookie
+	/*Cookie [] c = request.getCookies();
+	if(c != null)
+		for(int i = 0; i < c.length; i++)
+			if("client".equals(c[i].getName())) {
+				// Запись значения в поле ввода, если найден Cookie
+				out.print(" value='" + URLDecoder.decode(c[i].getValue(), "UTF-8") + "' ");
+				break;
+			}*/
+%>
+> <INPUT TYPE=SUBMIT value="Ввод"> <br>
+Введите цвет отображения: <br>
+<INPUT TYPE=COLOR value="#ff0000"
+<%
+//Выбор всех Cookie
+	/*if(c != null)
+		for(int i = 0; i < c.length; i++)
+			if("color".equals(c[i].getName())) {
+				// Запись значения в поле ввода, если найден Cookie
+				out.print(" value='" + URLDecoder.decode(c[i].getValue(), "UTF-8") + "' ");
+				break;
+			}*/
+%>
+> <br>
+
+
+</form>
+
+<%
+	request.setCharacterEncoding("UTF-8");
+	String section = request.getParameter("section");
+	if(section == null)
+		throw new IllegalArgumentException("Section expected.");
+%>
+<%--<h1> Список продуктов в отделе: <%=section%></h1>
+<%@include file="ListData.jsp"%>--%>
+</body>
+</html>
